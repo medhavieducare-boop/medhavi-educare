@@ -11,8 +11,8 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevents zooming/side-scrolling issues */
-    -webkit-text-size-adjust: 100%; /* Ensures text scales 1:1 on all devices */
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -20,13 +20,12 @@ body {
     color: var(--dark);
     line-height: 1.6;
     background-color: var(--light);
-    /* Space for the bottom sticky banner */
     padding-bottom: 100px; 
 }
 
 /* --- Global Spacing Logic --- */
 section {
-    padding: 60px 20px; /* Consistent gap from screen edges */
+    padding: 60px 20px;
     max-width: 1400px; 
     margin: 0 auto;
     box-sizing: border-box;
@@ -35,7 +34,7 @@ section {
 /* --- Header & Logo --- */
 header {
     background: white;
-    padding: 1rem 20px; /* Adjusted side padding */
+    padding: 1rem 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,6 +46,14 @@ header {
     box-sizing: border-box; 
 }
 
+/* Added wrap protection for the header buttons */
+header nav, .header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -54,27 +61,25 @@ header {
 }
 
 .logo-img {
-    height: 100px; /* Increased size for a bigger presence */
+    height: 100px;
     width: auto;
 }
 
 .logo-text {
-    font-weight: 700;
+    font-weight: bold;
     font-size: 1.5rem;
     color: var(--primary);
 }
 
 /* --- Hero Section --- */
 .hero {
-    /* Combined Gradient and Image logic */
     background: linear-gradient(135deg, rgba(11, 19, 32, 0.85) 0%, rgba(11, 19, 32, 0.7) 100%),
                 url('peakpx.jpg');
     background-size: cover;
     background-position: 70% center;
     background-repeat: no-repeat;
-    
     min-height: 65vh;
-    padding: 100px 20px; /* Safety gap so text doesn't hit header */
+    padding: 100px 20px;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -85,16 +90,15 @@ header {
     text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-/* Bolded Hero Headers */
 .hero h1 {
     font-family: 'Playfair Display', serif; 
-    font-weight: 900; /* Extra Bold */
+    font-weight: 900;
     font-size: 2.8rem;
     margin-bottom: 20px;
 }
 
 .hero p {
-    font-weight: 600; /* Bolder sub-text */
+    font-weight: 600;
     font-size: 1.2rem;
 }
 
@@ -103,11 +107,11 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
-    padding: 20px 20px; /* Reduced from 10% to keep content near edges but safe */
+    padding: 20px 20px;
 }
 
 .card, .destination-card {
-    background-color: #F5F5DC !important; /* Caramel / Beige */
+    background-color: #F5F5DC !important;
     border: 1px solid #e2d1b3;
     padding: 25px;
     border-radius: 12px;
@@ -179,7 +183,7 @@ input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radiu
 .modal-overlay {
     display: flex;
     position: fixed;
-    z-index: 10000; /* Higher than sticky bar */
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
@@ -227,7 +231,7 @@ input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radiu
 
 .footer-container {
     max-width: 100%;
-    padding: 0 40px; /* Reduced side padding */
+    padding: 0 40px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -235,7 +239,7 @@ input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radiu
 }
 
 .footer-logo-img {
-    height: 120px; /* Increased footer logo size */
+    height: 120px;
     width: auto;
 }
 
@@ -301,27 +305,92 @@ input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radiu
 .whatsapp-footer-btn { background-color: #25D366; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.1rem; font-weight: bold; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .whatsapp-footer-btn:hover { background-color: #128C7E; transform: translateY(-3px); }
 
-/* --- Responsive Media Queries --- */
+/* --- FIXED Responsive Media Queries --- */
 @media screen and (max-width: 768px) {
-    header { padding: 10px 15px; }
-    .logo-img { height: 70px; } /* Slightly smaller for mobile but still prominent */
-    .logo-text { font-size: 1.2rem; }
+    header { 
+        padding: 15px 15px; 
+        flex-direction: column; /* Stacks logo and buttons */
+        gap: 15px;
+        height: auto;
+    }
+
+    header nav, .header-actions { 
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn-apply, .btn-dest {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        flex: 1;
+        text-align: center;
+        max-width: 160px;
+    }
+
+    .logo-img { height: 60px; } 
+    .logo-text { font-size: 1.1rem; }
     
     .hero h1 { font-size: 1.8rem; }
     .hero p { font-size: 1rem; }
 
     .grid { padding: 10px 15px; gap: 15px; }
     
+    /* Find this inside your @media screen and (max-width: 768px) block */
     .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 30px; /* Increased side padding from 15px to 30px */
+    width: 100%;
+    box-sizing: border-box; /* Crucial: ensures padding doesn't push width over 100% */
     }
-    .footer-section.contact { text-align: center; margin-top: 30px; }
+    /* Find this in your mobile media query */
+    .footer-section.contact {
+    text-align: center; /* Centers the heading */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the individual lines of text */
+    }
+
+    .footer-section.contact p {
+    text-align: center;
+    width: 100%;
+    }
+    /* Add this inside the mobile media query */
+    .whatsapp-contact-section {
+    background-color: #ffffff; 
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid #eee; /* Ensuring the border is defined */
+    border-radius: 10px;
+    margin: 20px auto; /* Centers the box */
+    max-width: 90%; /* Keeps it from touching or overflowing edges */
+    box-sizing: border-box; /* Includes the border in the width calculation */
+    }
     .logo-title-wrapper { justify-content: center; }
+
+    .footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    }
     
     .sticky-content { flex-direction: column; gap: 10px; text-align: center; }
     .sticky-tag { display: none; }
     .sticky-text { margin: 0; font-size: 0.9rem; }
+
+    .logo-titles {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    p { margin: 0; }
 }
+
