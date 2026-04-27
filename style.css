@@ -1,0 +1,677 @@
+:root {
+    --primary: #004aad;
+    --secondary: #00c6ff;
+    --dark: #333;
+    --light: #f4f7f6;
+    --accent: #ffcc00;
+}
+
+
+
+/* Header & Logo */
+header {
+    background: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    /* THE FIX: Sticky keeps it in the flow, Z-index keeps it on top */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1001; 
+    box-sizing: border-box; 
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.logo-img {
+    height: 35px; /* Adjust based on your logo shape */
+    width: auto;
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+/* Hero Section */
+/* REVISED BODY: Added padding-bottom to account for the Sticky Offer Bar */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--dark);
+    line-height: 1.6;
+    background-color: var(--light);
+    /* This ensures the bottom sticky banner never hides the last bit of your content */
+    padding-bottom: 100px; 
+}
+
+/* REVISED HERO: Changed height to min-height and added top padding */
+.hero {
+    /* Background logic remains the same */
+    background: linear-gradient(rgba(0,74,173,0.8), rgba(0,74,173,0.8));
+    background-size: cover;
+    background-position: center;
+    
+    /* THE FIX: min-height is safer than height. 
+       Padding-top creates a "safety gap" below the sticky header. */
+    min-height: 60vh;
+    padding: 60px 20px; 
+    
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+/* Grid & Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 10%;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Form Styling */
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-group { margin-bottom: 15px; }
+input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+
+.btn-apply {
+    background: var(--accent);
+    color: var(--dark);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Overlay Background */
+.modal-overlay {
+    display: flex; /* Starts visible */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Darken background */
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Modal Box */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+    border: 3px solid #004AAD; /* Matching your Medhavi blue */
+}
+
+/* Catchy Title */
+.alert-title {
+    color: #e63946; /* Catchy Red */
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+/* Bold Body Text */
+.alert-text {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Action Button */
+.modal-action-btn {
+    background-color: #004AAD;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-action-btn:hover {
+    background-color: #ffde59; /* Matching your yellow button */
+    color: #000;
+}
+
+/* --- New Image Slider Styles --- */
+
+/* Main wrapper: hide overflow so only one image shows */
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* This is key! */
+    border-top-left-radius: 10px; /* Matching card border-radius */
+    border-top-right-radius: 10px;
+}
+
+/* Flexbox track to align images side-by-side */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+    width: 100%; /* Important for logic */
+}
+
+/* Ensure every image takes up 100% width of the card and has equal height */
+.slider-container img.card-img {
+    flex: 0 0 100%; /* Do not grow, do not shrink, take 100% container width */
+    width: 100%;
+    object-fit: cover; /* Crop image to fill space without distorting */
+    aspect-ratio: 16 / 9; /* Sets a uniform shape for all pics */
+    margin: 0; /* Remove default margins */
+}
+
+/* Arrow Styling */
+.slider-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4); /* Semitransparent background */
+    transition: 0.3s ease;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Footer Layout - Force sections to opposite ends */
+.footer-container {
+    max-width: 100%; /* Allow it to hit the edges */
+    padding: 0 60px; /* Add some breathing room from the screen edge */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Pushes items to Left and Right */
+    align-items: flex-start;
+}
+
+/* Logo and Text Alignment */
+.logo-title-wrapper {
+    display: flex;
+    align-items: center; /* Aligns logo and text vertically */
+    gap: 15px; /* Space between logo and "Medhavi Educare" */
+    margin-bottom: 15px;
+}
+
+.footer-logo-img {
+    width: 80px; /* Adjust this to make the logo bigger */
+    height: auto;
+}
+
+.footer-brand-name {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #ffde59; /* Your yellow theme color */
+}
+
+/* About Section Width */
+.footer-section.about {
+    max-width: 450px; /* Prevents the text from stretching too wide */
+    text-align: left;
+}
+
+/* Contact Section Alignment */
+.footer-section.contact {
+    text-align: right; /* Aligns "Contact Us" and details to the right */
+}
+
+/* Mobile Fix - Stack them when screen is small */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+    .footer-section.contact {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .logo-title-wrapper {
+        justify-content: center;
+    }
+}
+
+/* --- Modern Professional Footer --- */
+
+.main-footer {
+    background-color: #004AAD !important; /* Forces the primary blue back */
+    color: #ffffff;
+    padding: 60px 0 20px 0;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 100%;
+    padding: 0 80px; /* High padding to keep About left and Contact right */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Ensure the About section text stays white */
+.footer-description {
+    color: #ffffff;
+    opacity: 0.9;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+/* Centering the Footer Bottom */
+.footer-bottom {
+    text-align: center; /* This centers the text inside the div */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    margin-top: 40px;
+    width: 100%; /* Ensures it spans the full width to allow centering */
+    display: block; 
+}
+
+.footer-bottom p {
+    margin: 0 auto;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    color: #ffffff;
+}
+
+/* Re-check Contact section colors */
+.footer-section.contact h3 {
+    color: #ffde59;
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    color: #ffde59;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-bottom: 4px solid #ffde59; /* Catchy yellow underline */
+    display: inline-block;
+}
+
+h2 {
+    color: #004AAD; /* Matching your brand blue */
+    font-size: 2rem; /* Making headers stand out */
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: inline-block; /* Essential so the underline only spans the text width */
+    
+    /* Modern Underline */
+    border-bottom: 4px solid #ffde59; /* Your brand yellow for a catchy contrast */
+    padding-bottom: 5px; /* Space between the text and the line */
+}
+
+h2 {
+    /* Applying the new font */
+    font-family: 'Playfair Display', serif; 
+    
+    /* Style adjustments */
+    font-size: 2.5rem; /* Slightly larger for this specific font style */
+    color: #004AAD; 
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    
+    /* Underline logic */
+    display: inline-block; 
+    border-bottom: 5px solid #ffde59; /* Thicker yellow line for a premium look */
+    padding-bottom: 8px;
+}
+
+/* Remove Global h2 styling from the Footer Section */
+.main-footer h2, 
+.footer-brand-name {
+    /* Reset Font: Back to the clean Poppins font used in the body */
+    font-family: 'Poppins', sans-serif !important;
+    
+    /* Remove Underline */
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    
+    /* Reset Font Size and Color for Footer Logo */
+    font-size: 1.8rem;
+    color: #ffde59; /* Your brand yellow */
+    margin-bottom: 10px;
+    display: block; /* Changes from inline-block back to a normal block */
+}
+
+/* Styling the individual cards */
+.card, .destination-card {
+    background-color: #F5F5DC !important; /* Light Caramel / Beige */
+    
+    /* Adding some polish to make the caramel look premium */
+    border: 1px solid #e2d1b3; /* A slightly darker caramel border */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+    
+    /* Ensure the text inside remains readable */
+    color: #333333;
+    transition: transform 0.3s ease; /* Makes them pop when hovered */
+}
+
+/* Optional: Make them lift slightly when you move your mouse over them */
+.card:hover, .destination-card:hover {
+    transform: translateY(-5px);
+    background-color: #f0e9d2 !important; /* Slightly richer caramel on hover */
+}
+
+/* Sticky Bar Styles */
+.sticky-offer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0b1320; /* Dark background from your poster */
+    color: white;
+    padding: 12px 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    z-index: 9999; /* Ensures it stays above everything */
+    border-top: 3px solid #f1c40f; /* Gold accent line */
+}
+
+.sticky-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.sticky-tag {
+    background: #f1c40f;
+    color: #000;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.sticky-text {
+    margin: 0;
+    font-size: 1.1rem;
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.sticky-text strong {
+    color: #f1c40f;
+}
+
+/* Action Buttons */
+.sticky-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.sticky-btn {
+    padding: 8px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.call-btn {
+    background: transparent;
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+}
+
+.call-btn:hover {
+    background: #f1c40f;
+    color: #000;
+}
+
+.apply-btn {
+    background: #f1c40f;
+    color: #000;
+}
+
+.apply-btn:hover {
+    background: #e1b400;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .sticky-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .sticky-tag { display: none; } /* Hide tag on mobile to save space */
+    .sticky-text { margin: 0; font-size: 0.9rem; }
+}
+
+.hero { /* Replace with your specific class name */
+    background-image: 
+        /* 1. The Overlay (semi-transparent charcoal/navy gradient) */
+        linear-gradient(135deg, rgba(11, 19, 32, 0.85) 0%, rgba(11, 19, 32, 0.7) 100%),
+        /* 2. Your new background image */
+        url('peakpx.jpg'); /* Ensure the filename matches what you save the image as */
+    
+    /* 3. Positioning and Sizing */
+    background-size: cover;
+    background-position: 70% center; /* Shift slightly so stethoscope head is visible but doesn't block central text */
+    background-repeat: no-repeat;
+    
+    /* 4. Text Contrast Enhancement */
+    color: #ffffff; /* Sets default text to clear white */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Optional subtle shadow on all text for extra pop */
+    
+    /* Ensure proper padding for the text container */
+    padding: 100px 5%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 1. UNIVERSAL SPACING FIX (The "Edge Gap" Problem) */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+/* Apply a standard side padding to all your main sections */
+section {
+    padding: 60px 20px; /* 60px Top/Bottom, 20px Left/Right gap */
+    max-width: 1200px;  /* Prevents content from stretching too wide on big screens */
+    margin: 0 auto;     /* Centers the content */
+    box-sizing: border-box; /* Crucial: includes padding in the width calculation */
+}
+
+/* 2. HEADER FIX (For Desktop & Mobile) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; /* Added 20px gap here too */
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 40px; /* Fixed height for consistency */
+}
+
+/* 3. MOBILE RESPONSIVENESS (Screens under 768px) */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: row; 
+        gap: 15px;
+        text-align: center;
+        padding: 10px 5%;
+        justify-content: space-between;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    /* Adjusting your "Why Choose" cards so they don't touch edges */
+    .grid { 
+        display: block; /* Stacks cards on top of each other on mobile */
+    }
+
+    .card {
+        margin-bottom: 20px;
+        padding: 20px; /* Ensures text inside cards doesn't touch card edges */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Shrinks big headlines so they fit on one line */
+    }
+}
+
+.whatsapp-contact-section {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.whatsapp-contact-section h3 {
+    font-size: 1.5rem;
+    color: #0b1320; /* Dark navy from your theme */
+    margin-bottom: 20px;
+}
+
+.whatsapp-footer-btn {
+    background-color: #25D366; /* Official WhatsApp Green */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px; /* Rounded pill shape */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.whatsapp-footer-btn:hover {
+    background-color: #128C7E; /* Darker WhatsApp green on hover */
+    transform: translateY(-3px);
+}
+
+.whatsapp-footer-btn i {
+    font-size: 1.5rem;
+}
+
+
+@media (max-width: 600px) {
+    .whatsapp-contact-section h3 {
+        font-size: 1.2rem;
+    }
+}
+
+
