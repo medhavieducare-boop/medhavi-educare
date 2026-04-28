@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get expert guidance for MBBS in Bangladesh and Vietnam. We help students with admissions,college selection, and documentation for top medical universities.">
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,18 +12,60 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-TKPT7XL8');</script>
    <!-- End Google Tag Manager -->
+
     <title>MBBS Abroad | Best Medical Consultancy-Medhavi Educare</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style2.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+   <style>
+       /* Navigation Menu Styling */
+       .nav-container { 
+           display: flex; 
+           align-items: center; 
+           gap: 15px; 
+           position: relative; 
+       }
+
+       .menu-icon { 
+           font-size: 28px; /* Larger size */
+           cursor: pointer; 
+           color: #004a99; /* Professional Blue */
+           padding: 5px;
+           display: block !important; /* Forces visibility */
+           z-index: 1002;
+       }
+
+       .nav-menu { 
+           display: none; 
+           position: absolute; 
+           top: 60px; 
+           right: 0; 
+           background: #fff; 
+           box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+           border-radius: 8px; 
+           padding: 15px; 
+           min-width: 200px; 
+           z-index: 1001; 
+       }
+
+       .nav-menu.active { display: block; }
+       .nav-menu ul { list-style: none; padding: 0; margin: 0; }
+       .nav-menu ul li { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+       .nav-menu ul li:last-child { margin-bottom: 0; border-bottom: none; }
+       .nav-menu ul li a { text-decoration: none; color: #333; font-weight: 600; font-size: 16px; display: block; }
+       .nav-menu ul li a:hover { color: #004a99; }
+   </style>
 </head>
 <body>
+    
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKPT7XL8"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div id="salesModal" class="modal-overlay">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -46,8 +89,22 @@
          <p>Your trusted partner for pursuing MBBS abroad.</p>
     </div>
     </div>
-    <nav>
-        <a href="#destinations" class="btn-dest">Destinations</a>
+    <nav class="nav-container">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="#apply" onclick="toggleMenu()">Submit Form</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
+            </ul>
+        </div>
+
+    
         <a href="#apply" class="btn-apply">Apply Now</a>
     </nav>
 </header>
@@ -235,7 +292,7 @@
     </div>
 </section>
 
-<footer class="main-footer">
+<footer id="contact" class="main-footer">
     <div class="footer-container">
         <div class="footer-section about">
             <div class="logo-title-wrapper">
@@ -279,5 +336,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('navMenu');
+        menu.classList.toggle('active');
+    }
+    
+    function checkDestination(select) {
+        const otherGroup = document.getElementById('other-input-group');
+        otherGroup.style.display = (select.value === 'Other') ? 'block' : 'none';
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('navMenu');
+        const icon = document.querySelector('.menu-icon');
+        if (menu && icon && !menu.contains(event.target) && !icon.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
