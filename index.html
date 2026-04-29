@@ -376,7 +376,11 @@
 
            <div class="form-group">
     <label>Preferred Destination</label>
-    <select name="destination" id="destination" multiple size="4" onmousedown="toggleMultiple(event, this)" style="width: 100%; border: 1px solid #000; border-radius: 4px; padding: 5px; cursor: pointer;">
+    <select name="destination" id="destination" multiple size="4" 
+        onchange="checkDestination(this)" 
+        onclick="checkDestination(this)" 
+        style="width: 100%; border: 1px solid #000; border-radius: 4px; padding: 5px; cursor: pointer;">
+    <!-- <select name="destination" id="destination" multiple size="4" onmousedown="toggleMultiple(event, this)" style="width: 100%; border: 1px solid #000; border-radius: 4px; padding: 5px; cursor: pointer;"> -->
         <!-- <option value=""disabled selected>Select</option> -->
         <option value="Bangladesh">Bangladesh</option>
         <option value="Vietnam">Vietnam</option>
@@ -410,23 +414,44 @@
         // Focus the select box so it looks active
         select.focus();
     }
-
     function checkDestination(select) {
-        const otherGroup = document.getElementById('other-input-group');
-        const customInput = document.getElementById('custom_destination');
-        
-        // Convert selected options to an array of values
-        const selectedValues = Array.from(select.selectedOptions).map(opt => opt.value);
+    const otherGroup = document.getElementById('other-input-group');
+    const customInput = document.getElementById('custom_destination');
+    
+    // Get all currently selected values into an array
+    const selectedValues = Array.from(select.selectedOptions).map(opt => opt.value);
 
-        if (selectedValues.includes('Other')) {
-            otherGroup.style.display = 'block';
-            customInput.required = true;
-        } else {
-            otherGroup.style.display = 'none';
-            customInput.required = false;
-            customInput.value = '';
-        }
+    // If "Other" is one of the selected items, show the input
+    if (selectedValues.includes('Other')) {
+        otherGroup.style.display = 'block';
+        customInput.required = true;
+        
+        // Minor delay to ensure smooth scrolling on mobile
+        setTimeout(() => {
+            customInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        otherGroup.style.display = 'none';
+        customInput.required = false;
+        customInput.value = '';
     }
+}
+    // function checkDestination(select) {
+    //     const otherGroup = document.getElementById('other-input-group');
+    //     const customInput = document.getElementById('custom_destination');
+        
+    //     // Convert selected options to an array of values
+    //     const selectedValues = Array.from(select.selectedOptions).map(opt => opt.value);
+
+    //     if (selectedValues.includes('Other')) {
+    //         otherGroup.style.display = 'block';
+    //         customInput.required = true;
+    //     } else {
+    //         otherGroup.style.display = 'none';
+    //         customInput.required = false;
+    //         customInput.value = '';
+    //     }
+    // }
 </script>
 
 
