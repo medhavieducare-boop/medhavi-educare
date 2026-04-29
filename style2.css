@@ -396,3 +396,35 @@ input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radiu
     p { margin: 0; }
 }
 
+/* to maintain scrolling behaviour*/
+html {
+  scroll-behavior: smooth;
+}
+
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #eee; margin-bottom: 10px; }
+.faq-question { width: 100%; text-align: left; padding: 15px; background: none; border: none; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
+.faq-answer { padding: 0 15px 15px; display: none; color: #666; }
+.faq-item.active .faq-answer { display: block; }
+
+/* Unified Portal Section */
+.portal-cta {
+    background-color: #004aad; /* Matches your brand blue */
+    color: white;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure the box inside the section looks clean */
+.portal-box h2 {
+    color: #ffcc00; /* Yellow accent */
+    border-bottom: none; /* Removes the underline often found in your h2 */
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.portal-cta p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}

@@ -19,7 +19,7 @@
         .nav-menu ul li a { text-decoration: none; color: #333; font-weight: 600; font-size: 16px; display: block; }
         
         /* About Content Styles */
-        .page-header { background: #004a99; color: white; padding: 60px 20px; text-align: center; }
+        .page-header { background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('about-background.webp'); color: white; padding: 60px 20px; text-align: center; }
         .content-wrap { padding: 50px 10%; line-height: 1.8; color: #444; }
         .section-title { color: #004a99; border-left: 5px solid #004a99; padding-left: 15px; margin: 30px 0 15px; }
     </style>
@@ -44,7 +44,7 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="destinations.html">Destinations</a></li>
                 <li><a href="index.html#apply" onclick="toggleMenu()">Submit Form</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
+                <li><a href="index.html#home-contact" onclick="toggleMenu()">Contact Us</a></li>
             </ul>
         </div>
         <a href="index.html#apply" class="btn-apply">Apply Now</a>
@@ -52,14 +52,158 @@
 </header>
 
 <div class="page-header">
-    <h1>About Medhavi Educare</h1>
+    <h1 style="color: #ffcc00; font-family: 'Times New Roman', Times, serif;">About Medhavi Educare</h1>
     <p>Empowering Students to Become Global Doctors</p>
 </div>
 
-<div class="content-wrap">
+<section class="about-extra">
+    <div class="container">
+        <h2 class="section-title">Why Choose Medhavi Educare?</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="icon">🛡️</div>
+                <h4>Verified Universities</h4>
+                <p>We only partner with institutions recognized by the WHO and NMC for global career security.</p>
+            </div>
+            <div class="why-item">
+                <div class="icon">💰</div>
+                <h4>Transparent Fees</h4>
+                <p>Zero hidden costs or donations. You get a clear financial roadmap from day one.</p>
+            </div>
+            <div class="why-item">
+                <div class="icon">🤝</div>
+                <h4>On-Ground Support</h4>
+                <p>Our team assists you in the destination country with hostel and local registration.</p>
+            </div>
+            <div class="why-item">
+                <div class="icon">🎓</div>
+                <h4>Expert Guidance</h4>
+                <p>Counselors who understand FMGE/NExT patterns to guide your academic success.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process-section">
+    <div class="container">
+        <h2 class="section-title">Our 4-Step Process</h2>
+        <div class="process-flex">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h5>Counseling</h5>
+                <p>NEET-based university selection.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h5>Admission</h5>
+                <p>Documentation & application handling.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h5>Visa & Travel</h5>
+                <p>Smooth filing and flight booking.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h5>Settling In</h5>
+                <p>Post-admission local assistance.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* General Styling */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #003366; /* Match your deep blue */
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #ffcc00; /* Match your yellow accent */
+    margin: 10px auto;
+}
+
+/* Why Choose Us Grid */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    
+}
+
+.why-item {
+    background: lightgoldenrodyellow;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.why-item:hover {
+    transform: translateY(-5px);
+}
+
+.why-item .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+/* Process Section */
+.process-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.step {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: 20px;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #003366;
+    color: white;
+    border-radius: 50%;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto 15px;
+    border: 4px solid #ffcc00; /* Yellow ring */
+}
+
+.step h5 {
+    margin-bottom: 10px;
+    color: #333;
+}
+</style>
+
+<div class="container">
     <h2 class="section-title">Our Story</h2>
     <p>Medhavi Educare was founded with a single mission: to bridge the gap between aspiring medical students and quality education.</p>
+</div>
 
+<div class="container">
     <h2 class="section-title">Our Mission & Vision</h2>
     <p><strong>Mission:</strong> To provide transparent, ethical, and end-to-end consultancy services for students pursuing MBBS abroad.</p>
     <p><strong>Vision:</strong> To be India's most trusted educational consultancy for medical studies.</p>
@@ -74,6 +218,15 @@
         const menu = document.getElementById('navMenu');
         menu.classList.toggle('active');
     }
+
+     // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('navMenu');
+        const icon = document.querySelector('.menu-icon');
+        if (menu && icon && !menu.contains(event.target) && !icon.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
 </script>
 </body>
 </html>
